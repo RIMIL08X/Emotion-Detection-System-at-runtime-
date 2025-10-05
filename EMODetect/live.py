@@ -1,30 +1,24 @@
-# yolo_fer_live.py
+
 
 import os
 import cv2
 import numpy as np
 import time
 
-# =====================================================
-# TensorFlow CPU-Only Mode (Disable GPU)
-# =====================================================
+#gpu disabling 
 os.environ["CUDA_VISIBLE_DEVICES"] = "-1"  # Disable TensorFlow GPU usage
 
 from tensorflow.keras.models import load_model
 from ultralytics import YOLO
 import torch
 
-# =====================================================
-# Configuration
-# =====================================================
+#basic configs
 FER_MODEL_PATH = "model/fer2013_cnn_model.h5"   # FER2013 CNN model
 EMOTION_LABELS = ["Angry", "Disgust", "Fear", "Happy", "Sad", "Surprise", "Neutral"]
 WEBCAM_INDEX = 0
 SHOW_FPS = True
 
-# =====================================================
-# Load Models
-# =====================================================
+#Loading the Model
 print("[INFO] Loading FER model (CPU only)...")
 if not os.path.exists(FER_MODEL_PATH):
     raise FileNotFoundError(f"FER model not found at: {FER_MODEL_PATH}")
@@ -38,9 +32,7 @@ yolo_face_model = YOLO("yolov8n-face.pt")
 device = "cuda" if torch.cuda.is_available() else "cpu"
 print(f"[INFO] YOLO running on: {device.upper()} | TensorFlow on: CPU")
 
-# =====================================================
-# Preprocessing function
-# =====================================================
+#prep function
 def preprocess_face(face_img):
     """
     Convert a face image to 48x48 grayscale, normalized for CNN input
@@ -51,9 +43,7 @@ def preprocess_face(face_img):
     reshaped = np.reshape(normalized, (1, 48, 48, 1))
     return reshaped
 
-# =====================================================
-# Start webcam capture
-# =====================================================
+# web-cam start
 cap = cv2.VideoCapture(WEBCAM_INDEX)
 if not cap.isOpened():
     raise RuntimeError("Could not open webcam. Check camera index.")
@@ -61,9 +51,7 @@ if not cap.isOpened():
 prev_time = time.time()
 print("[INFO] Starting live detection. Press 'q' to quit.")
 
-# =====================================================
-# Live Detection Loop
-# =====================================================
+# live loop
 while True:
     ret, frame = cap.read()
     if not ret:
@@ -111,9 +99,7 @@ while True:
     if cv2.waitKey(1) & 0xFF == ord('q'):
         break
 
-# =====================================================
-# Cleanup
-# =====================================================
+#clearance
 cap.release()
 cv2.destroyAllWindows()
 print("[INFO] Live detection stopped.")
