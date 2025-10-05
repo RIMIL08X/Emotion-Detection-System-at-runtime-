@@ -1,5 +1,3 @@
-# train_cnn.py
-
 import os
 from tensorflow.keras.models import Sequential
 from tensorflow.keras.layers import Conv2D, MaxPooling2D, Flatten, Dense, Dropout
@@ -10,7 +8,7 @@ from preprocessing import load_fer2013  # import the preprocessing function
 os.makedirs("model", exist_ok=True)
 MODEL_PATH = "model/fer2013_cnn_model.h5"
 
-# Load data (preprocessing uses tqdm)
+# Load data with tqdm cuz of progress bar
 X_train, y_train, X_val, y_val = load_fer2013("fer2013.csv")
 
 # Build CNN model
