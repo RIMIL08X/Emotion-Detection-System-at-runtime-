@@ -42,7 +42,23 @@ source emodetect-venv/bin/activate
 Install dependencies:
 
 ```bash
-pip install torch torchvision ultralytics tensorflow opencv-python numpy
+# YOLOv8 for face detection
+ultralytics==8.0.148
+
+# OpenCV for real-time video capture and visualization
+opencv-python==4.8.1.78
+
+# TensorFlow / Keras for CNN emotion model
+tensorflow==2.14.0
+
+# NumPy for array operations
+numpy==1.26.0
+
+# Pandas for CSV preprocessing (FER2013)
+pandas==2.1.0
+
+# Optional: DeepFace if you ever want quick pre-trained emotion analysis
+# deepface==0.0.94
 ```
 
 If TensorFlow GPU support is needed:
