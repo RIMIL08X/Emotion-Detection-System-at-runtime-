@@ -57,13 +57,17 @@ pip install tensorflow[and-cuda]
 
 ```
 EMODetect/
-├── model.h5                # Pretrained emotion classification model
-├── yolov8n-face.pt         # YOLO face detection model
-├── live.py                 # Main real-time inference script
-├── preprocess.py           # (Optional) Dataset preprocessing script
-├── train.py                # (Optional) Model training script
-├── requirements.txt        # Project dependencies
-└── README.md               # Documentation
+│
+├── pycache/ # Cached Python files
+├── model/ # Directory containing trained model files
+│ └── fer2013_cnn_model.h5 # CNN model trained on FER2013 dataset
+│
+├── live.py # Real-time detection script (YOLO + CNN + OpenCV)
+├── preprocessing.py # Dataset preprocessing utilities
+├── train.py # Script to train the CNN on FER2013
+├── yolov8n-face.pt # YOLOv8 lightweight face detection model
+├── requirements.txt # List of dependencies
+└── README.md # This file
 ```
 
 ---
