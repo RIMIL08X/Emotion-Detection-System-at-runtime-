@@ -1,12 +1,10 @@
-# preprocessing.py
-
 import os
 import numpy as np
 import pandas as pd
 from tensorflow.keras.utils import to_categorical
 from tqdm import tqdm
 
-# Set full path to your FER2013 CSV here
+# hardcoded path to csv
 FER2013_CSV_PATH = "/home/rimil0bx/Documents/Projects/EMODetect/fer2013.csv"
 
 def load_fer2013(csv_path=FER2013_CSV_PATH):
@@ -32,8 +30,8 @@ def load_fer2013(csv_path=FER2013_CSV_PATH):
     # Function to convert CSV pixel strings to numpy arrays
     def preprocess_pixels(pixels):
         pixels = np.array(pixels.split(), dtype='float32')
-        pixels = pixels.reshape(48,48,1)  # grayscale
-        pixels /= 255.0  # normalize to [0,1]
+        pixels = pixels.reshape(48,48,1) 
+        pixels /= 255.0  
         return pixels
 
     # Training set
@@ -48,7 +46,7 @@ def load_fer2013(csv_path=FER2013_CSV_PATH):
 
     return X_train, y_train, X_val, y_val
 
-# Example usage
+# example case
 if __name__ == "__main__":
     try:
         X_train, y_train, X_val, y_val = load_fer2013()
