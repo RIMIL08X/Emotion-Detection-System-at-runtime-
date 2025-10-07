@@ -35,11 +35,11 @@ A real-time **Facial Emotion Recognition (FER)** system built using **YOLOv8** f
 Below are terminal screenshots of the model training process (accuracy and loss progression):
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/RIMIL08X/EMODetect/assets/training_terminal_1.png" alt="Training Log 1" width="600">
+  <img src="https://raw.githubusercontent.com/RIMIL08X/Real-Time-Emotion-Detection-System/main/assets/training_terminal_1.png" alt="Training Log 1" width="600">
 </p>
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/RIMIL08X/EMODetect/assets/training_terminal_2.png" alt="Training Log 2" width="600">
+  <img src="https://raw.githubusercontent.com/RIMIL08X/Real-Time-Emotion-Detection-System/main/assets/training_terminal_2.png" alt="Training Log 2" width="600">
 </p>
 
 ---
@@ -70,13 +70,13 @@ source emodetect-venv/bin/activate
 ### 4. Install Dependencies
 
 ```bash
-pip install -r requirements.txt
+pip install -r EMODetect/requirements.txt
 ```
 
 ### 5. Run Real-Time Detection
 
 ```bash
-python live.py
+python EMODetect/live.py
 ```
 
 **What happens:**
@@ -93,21 +93,21 @@ Press **'q'** to exit the live window.
 ## 📁 Project Structure
 
 ```
-EMODetect/
-│
-├── __pycache__/               # Cached Python files
+.
 ├── assets/                    # Assets folder for documentation and visuals
 │   ├── training_terminal_1.png
 │   └── training_terminal_2.png
 │
-├── model/                     # Directory containing trained model files
-│   └── fer2013_cnn_model.h5   # CNN model trained on FER2013 dataset
+├── EMODetect/
+│   ├── __pycache__/           # Cached Python files
+│   ├── model/                 # Directory containing trained model files
+│   │   └── fer2013_cnn_model.h5
+│   ├── live.py                # Real-time detection script (YOLO + CNN + OpenCV)
+│   ├── preprocessing.py        # Dataset preprocessing utilities
+│   ├── train.py                # Script to train the CNN on FER2013
+│   ├── yolov8n-face.pt         # YOLOv8 lightweight face detection model
+│   └── requirements.txt        # List of dependencies
 │
-├── live.py                    # Real-time detection script (YOLO + CNN + OpenCV)
-├── preprocessing.py            # Dataset preprocessing utilities
-├── train.py                    # Script to train the CNN on FER2013
-├── yolov8n-face.pt             # YOLOv8 lightweight face detection model
-├── requirements.txt            # List of dependencies
 └── README.md                   # This file
 ```
 
