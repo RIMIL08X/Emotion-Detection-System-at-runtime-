@@ -133,7 +133,7 @@ Press **'q'** to exit the live window.
 
 ## 🧑‍💻 Author
 
-**Storm (Rimil)**
+**RIMIL08X (Rimil)**
 CSE Student @ SRM Kattankulathur
 Focus: Computer Vision | Deep Learning | Reinforcement Learning
 
