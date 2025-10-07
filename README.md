@@ -132,11 +132,11 @@ EMODetect/
 The CNN model was trained on the **FER2013 dataset**. Below are **two terminal snapshots** showing the training process, accuracy, and loss progression across epochs:
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/stormrimil/EMODetect/assets/training_terminal_1.png" alt="Training Log 1" width="600">
+  <img src="https://raw.githubusercontent.com/RIMIL08X/EMODetect/assets/training_terminal_1.png" alt="Training Log 1" width="600">
 </p>
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/stormrimil/EMODetect/assets/training_terminal_2.png" alt="Training Log 2" width="600">
+  <img src="https://raw.githubusercontent.com/RIMIL08X/EMODetect/assets/training_terminal_2.png" alt="Training Log 2" width="600">
 </p>
 
 > *(Ensure both screenshots are uploaded to your GitHub repo at `assets/` path for direct rendering.)*
