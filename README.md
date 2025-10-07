@@ -1,135 +1,38 @@
-# Real-Time Facial Emotion Recognition 
+# Real-Time Facial Emotion Recognition
 
-A real-time **Facial Emotion Recognition (FER)** system built using **YOLOv8** for face detection, **OpenCV** for video capture, and a **custom CNN (`.h5`) model** trained on FER datasets for emotion classification.
+A real-time **Facial Emotion Recognition (FER)** system built using **YOLOv8** for face detection, **OpenCV** for video capture, and a **custom CNN (.h5) model** trained on FER datasets for emotion classification.
 
 ---
 
 ## 🚀 Features
 
 * Real-time emotion detection from webcam or video feed.
-* Uses **YOLOv8** for accurate and fast face detection.
-* Loads a **custom-trained CNN (.h5)** model for emotion classification.
+* Uses **YOLOv8** for high-accuracy face detection.
+* Loads a **pretrained CNN (.h5)** model for emotion classification.
 * Bounding boxes with emotion labels drawn using OpenCV.
-* Works on **CPU** or **GPU**.
+* Works on CPU or GPU.
 
 ---
 
 ## 🧠 Model Overview
 
-### 1. **YOLOv8 (Face Detection)**
+1. **YOLOv8 (Face Detection)**
 
-* Detects faces in real-time.
-* Model file: `yolov8n-face.pt`
-* Source: [YOLOv8n-Face Weights (Hugging Face)](https://huggingface.co/arnabdhar/YOLOv8n-face/resolve/main/yolov8n-face.pt)
+   * Detects human faces in real time.
+   * Model file: `yolov8n-face.pt`
+   * Source: [YOLOv8n-Face Weights (Hugging Face)](https://huggingface.co/arnabdhar/YOLOv8n-face/resolve/main/yolov8n-face.pt)
 
-### 2. **FER Model (Emotion Classification)**
+2. **FER Model (Emotion Classification)**
 
-* Trained **CNN** stored as `fer2013_cnn_model.h5`.
-* Accepts cropped face images and classifies into:
-  `['Angry', 'Disgust', 'Fear', 'Happy', 'Neutral', 'Sad', 'Surprise']`
-
----
-
-## ⚙️ Setup Instructions
-
-Follow these steps to set up and run the project locally.
-
-### 1️⃣ Install `pyenv` and Python 3.11+
-
-If you don’t have Python 3.11 installed:
-
-```bash
-# Install pyenv (Ubuntu/Debian example)
-curl https://pyenv.run | bash
-
-# Add pyenv to PATH (add these lines to ~/.bashrc or ~/.zshrc)
-export PATH="$HOME/.pyenv/bin:$PATH"
-eval "$(pyenv init --path)"
-eval "$(pyenv virtualenv-init -)"
-```
-
-Now install Python 3.11:
-
-```bash
-pyenv install 3.11.6
-pyenv local 3.11.6
-```
+   * Trained CNN stored as `fer2013_cnn_model.h5`.
+   * Accepts cropped face images and classifies emotions such as:
+     `['Angry', 'Disgust', 'Fear', 'Happy', 'Neutral', 'Sad', 'Surprise']`
 
 ---
 
-### 2️⃣ Create and Activate Virtual Environment
+## 🧩 Model Training Results
 
-```bash
-python -m venv emodetect-venv
-source emodetect-venv/bin/activate
-```
-
-Or (if you prefer pyenv’s virtualenv):
-
-```bash
-pyenv virtualenv 3.11.6 emodetect-venv
-pyenv activate emodetect-venv
-```
-
----
-
-### 3️⃣ Install Dependencies
-
-All dependencies are listed in `requirements.txt`.
-
-```bash
-pip install -r requirements.txt
-```
-
-If you need GPU acceleration:
-
-```bash
-pip install tensorflow[and-cuda]
-```
-
----
-
-### 4️⃣ Run the Real-Time Detector
-
-Once setup is complete, start the live detection:
-
-```bash
-python live.py
-```
-
-**What happens:**
-
-* YOLOv8 detects faces in the webcam feed.
-* Each detected face is cropped and fed into the CNN.
-* The CNN predicts the emotion label.
-* Bounding boxes with emotion names are drawn live on the frame.
-
-Press **`q`** to quit.
-
----
-
-## 📁 Project Structure
-
-```
-EMODetect/
-│
-├── __pycache__/                # Cached Python files
-├── model/                      # Directory containing trained model files
-│   └── fer2013_cnn_model.h5    # CNN model trained on FER2013 dataset
-│
-├── live.py                     # Real-time detection (YOLO + CNN + OpenCV)
-├── preprocessing.py             # Dataset preprocessing utilities
-├── train.py                    # CNN training script
-├── yolov8n-face.pt             # YOLOv8 lightweight face detection model
-├── requirements.txt             # List of dependencies
-└── README.md                   # This file
-```
-
----
-
-## 📊 Model Training Results
-
-The CNN model was trained on the **FER2013 dataset**. Below are **two terminal snapshots** showing the training process, accuracy, and loss progression across epochs:
+Below are terminal screenshots of the model training process (accuracy and loss progression):
 
 <p align="center">
   <img src="https://raw.githubusercontent.com/RIMIL08X/EMODetect/assets/training_terminal_1.png" alt="Training Log 1" width="600">
@@ -139,43 +42,96 @@ The CNN model was trained on the **FER2013 dataset**. Below are **two terminal s
   <img src="https://raw.githubusercontent.com/RIMIL08X/EMODetect/assets/training_terminal_2.png" alt="Training Log 2" width="600">
 </p>
 
-> *(Ensure both screenshots are uploaded to your GitHub repo at `assets/` path for direct rendering.)*
+---
 
-Example performance: **~85% validation accuracy** after fine-tuning.
+## 🛠️ Setup Instructions
+
+### 1. Clone the Repository
+
+```bash
+git clone https://github.com/RIMIL08X/EMODetect.git
+cd EMODetect
+```
+
+### 2. Install Python Version using pyenv
+
+```bash
+pyenv install 3.11.9
+pyenv local 3.11.9
+```
+
+### 3. Create and Activate Virtual Environment
+
+```bash
+python3 -m venv emodetect-venv
+source emodetect-venv/bin/activate
+```
+
+### 4. Install Dependencies
+
+```bash
+pip install -r requirements.txt
+```
+
+### 5. Run Real-Time Detection
+
+```bash
+python live.py
+```
+
+**What happens:**
+
+* YOLOv8 detects faces.
+* Each detected face is cropped and resized to the CNN input size.
+* The CNN predicts the emotion label.
+* Bounding boxes and labels appear live on your webcam feed.
+
+Press **'q'** to exit the live window.
 
 ---
 
-## 🎥 Example Live Output
-
-When you run `live.py`, you’ll see real-time bounding boxes and labels like:
+## 📁 Project Structure
 
 ```
-[Happy]  😊
-[Angry]  😠
-[Neutral] 😐
+EMODetect/
+│
+├── __pycache__/               # Cached Python files
+├── assets/                    # Assets folder for documentation and visuals
+│   ├── training_terminal_1.png
+│   └── training_terminal_2.png
+│
+├── model/                     # Directory containing trained model files
+│   └── fer2013_cnn_model.h5   # CNN model trained on FER2013 dataset
+│
+├── live.py                    # Real-time detection script (YOLO + CNN + OpenCV)
+├── preprocessing.py            # Dataset preprocessing utilities
+├── train.py                    # Script to train the CNN on FER2013
+├── yolov8n-face.pt             # YOLOv8 lightweight face detection model
+├── requirements.txt            # List of dependencies
+└── README.md                   # This file
 ```
 
 ---
 
-## 🧩 Troubleshooting
+## ⚙️ Troubleshooting
 
-| Issue                                          | Solution                                                          |
-| ---------------------------------------------- | ----------------------------------------------------------------- |
-| `FileNotFoundError: yolov8n-face.pt not found` | Download the YOLOv8n-Face model and place it in the project root. |
-| TensorRT / CUDA warnings                       | Ignore if not using GPU acceleration.                             |
-| Webcam not opening                             | Change `cv2.VideoCapture(0)` to another index (like `1` or `2`).  |
+| Issue                                     | Solution                                                                 |
+| ----------------------------------------- | ------------------------------------------------------------------------ |
+| `FileNotFoundError: YOLO model not found` | Download `yolov8n-face.pt` and place in project root.                    |
+| TensorRT warnings                         | Ignore if not using GPU acceleration.                                    |
+| Webcam not opening                        | Change `cv2.VideoCapture(0)` to another index like `cv2.VideoCapture(1)` |
 
 ---
 
 ## 📚 References
 
 * [Ultralytics YOLOv8 Docs](https://docs.ultralytics.com)
-* [FER2013 Dataset (Kaggle)](https://www.kaggle.com/datasets/msambare/fer2013)
-* [OpenCV Official Documentation](https://docs.opencv.org)
+* [FER2013 Dataset](https://www.kaggle.com/datasets/msambare/fer2013)
+* [OpenCV Documentation](https://docs.opencv.org)
 
 ---
 
-## 👨‍💻 Author
+## 🧑‍💻 Author
 
 **Storm (Rimil)**
 CSE Student @ SRM Kattankulathur
@@ -186,14 +142,3 @@ Focus: Computer Vision | Deep Learning | Reinforcement Learning
 ## 🧾 License
 
 This project is licensed under the **MIT License** – free to use and modify for research and educational purposes.
-
----
-
-### ✅ Quick Summary
-
-| Step                   | Command                                                               |
-| ---------------------- | --------------------------------------------------------------------- |
-| Setup Python via pyenv | `pyenv install 3.11.6`                                                |
-| Create & activate venv | `python -m venv emodetect-venv && source emodetect-venv/bin/activate` |
-| Install dependencies   | `pip install -r requirements.txt`                                     |
-| Run the project        | `python live.py`                                                      |
